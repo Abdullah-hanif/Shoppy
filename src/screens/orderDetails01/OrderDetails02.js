@@ -1,0 +1,174 @@
+import {
+	FlatList,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+	Dimensions
+} from "react-native";
+import React from "react";
+import MainHeader from "../../components/MainHeader";
+import { AntDesign, EvilIcons } from "@expo/vector-icons";
+import { COLORS, FontFamily } from "../../constants/colors";
+import { DummyText } from "../../constants/dummyText";
+import { scaleFontSize } from "../../utils/scaleFontSize";
+import Wrapper from "../../components/Wrapper";
+import ProductDetailsCard from "../../components/ProductDetailsCard";
+import ButtonComp from "../../components/ButtonComp";
+
+import { responsiveFontSize } from "../../utils/responsiveFontSize";
+import Card from "../../components/Card";
+import HeaderCheck from "../../components/HeaderCheck";
+import DetailsCard from "../../components/DetailsCard";
+
+const OrderDetails02 = ({ navigation }) => {
+	return (
+		<Wrapper>
+			<View style={styles.container}>
+				<MainHeader location={false} listIcon={true} />
+				<ScrollView showsVerticalScrollIndicator={false}>
+					<HeaderCheck
+						activeStep={false}
+						doneStep={true}
+						notVisited={false}
+					/>
+
+					<View style={styles.sectionOne}>
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "space-between",
+								alignItems: "center"
+							}}
+						>
+							<TouchableOpacity
+								onPress={() => navigation.goBack()}
+							>
+								<AntDesign
+									name="back"
+									size={30}
+									color={COLORS.secoundry}
+								/>
+							</TouchableOpacity>
+							<Text style={styles.txtStyle}>
+								{DummyText.Mi_carrito}
+							</Text>
+						</View>
+						<Text style={styles.txt2Style}>
+							{DummyText.ver_más}
+						</Text>
+					</View>
+					<ProductDetailsCard showcounter={true} showDeleteIcon={true} />
+					<View style={styles.titleConainer}>
+						<Text
+							style={[
+								styles.txtStyle,
+								{ fontSize: responsiveFontSize(16) }
+							]}
+						>
+							{DummyText.Entregar_a}
+						</Text>
+
+						{/* <Text>{DummyText.Entregar_a}</Text> */}
+						<View style={styles.innerTxtCon}>
+							<Text
+								style={[
+									styles.txtStyle,
+									{
+										fontSize: responsiveFontSize(10),
+										right: 5,
+										textDecorationLine: "underline"
+									}
+								]}
+							>
+								{DummyText.Agregar_nueva_dirección}
+							</Text>
+							<View style={styles.locationContainer}>
+								<EvilIcons
+									name="location"
+									color={COLORS.white}
+									size={25}
+								/>
+							</View>
+						</View>
+					</View>
+
+					<View>
+						<DetailsCard orange={true}/>
+						<DetailsCard orange={false}/>
+
+					</View>
+
+					{/* <VideoScreen /> */}
+					<View
+						style={{
+							marginBottom:
+								Dimensions.get("screen").height * 0.16,
+							bottom: 0
+						}}
+					>
+						<ButtonComp
+							onpress={() => {
+								navigation.navigate("OrderDetails03");
+								// refRBSheet.current.close();
+							}}
+							name={DummyText.añadir_a_la_cesta}
+							txtCOLOR={COLORS.black}
+							color={COLORS.secoundry}
+						/>
+					</View>
+				</ScrollView>
+			</View>
+		</Wrapper>
+	);
+};
+
+export default OrderDetails02;
+
+const styles = StyleSheet.create({
+	container: {
+		margin: 10
+	},
+	sectionOne: {
+		// backgroundColor:"blue",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		marginVertical: 5
+	},
+	txtStyle: {
+		fontFamily: FontFamily.Outfit_Medium,
+		fontSize: scaleFontSize(14),
+		color: COLORS.white
+	},
+	txt2Style: {
+		fontFamily: FontFamily.Outfit_Regular,
+		fontSize: scaleFontSize(13),
+		color: COLORS.secoundry
+	},
+	productName: {
+		fontFamily: FontFamily.Outfit_Regular,
+		fontSize: scaleFontSize(25),
+		color: COLORS.white
+	},
+	titleConainer: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center"
+	},
+	innerTxtCon: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between"
+	},
+	locationContainer: {
+		backgroundColor: COLORS.secoundry,
+		// padding:5,
+		borderRadius: 10,
+		height: 30,
+		width: 30,
+		justifyContent: "center",
+		alignItems: "center"
+	}
+});

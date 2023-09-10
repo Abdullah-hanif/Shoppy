@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Shopy",
+    "slug": "Shopy",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b54dea16-1b15-49ff-b316-f38b95c2d3e3"
+      }
+    }
+  },
+  "name": "Shopy"
+}
